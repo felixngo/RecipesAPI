@@ -1,13 +1,40 @@
 version: "3.8"
 
 services:
-  recipesAPI:
+  recipes_database:
+    container_name: recipes-database
+    build:
+      context: .
+      dockerfile: database/Dockerfile
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: recipes_database
+    ports:
+      - "5432:5432"
+
+  recipes_api:
     container_name: recipes-api
-    image: recipesapi
     build:
       context: ./back-end
       dockerfile: Dockerfile
+    restart: on-failure
     volumes:
       - ./back-end/:/app/
     ports:
       - "80:3000"
+    depends_on:
+      - recipes_database
+
+  recipes_client:
+    container_name: recipes-client
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "3000:3000"
+
+
+
