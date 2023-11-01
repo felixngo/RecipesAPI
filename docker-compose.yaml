@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  recipesAPI:
+    container_name: recipes-api
+    image: recipesapi
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    volumes:
+      - ./back-end/:/app/
+    ports:
+      - "80:3000"
