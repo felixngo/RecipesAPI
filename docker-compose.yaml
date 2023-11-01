@@ -13,6 +13,8 @@ services:
       POSTGRES_DB: recipes_database
     ports:
       - "5432:5432"
+    networks:
+      - recipes-network
 
   recipes_api:
     container_name: recipes-api
@@ -24,10 +26,16 @@ services:
       - ./back-end/:/app/
     environment:
       - PORT=80
+      - RECIPES_DATABASE_USER=postgres
+      - RECIPES_DATABASE_PASSWORD=postgres
+      - RECIPES_DATABASE_PORT=5432
+      - RECIPES_DATABASE_HOST=recipes_database
     ports:
       - "80:80"
     depends_on:
       - recipes_database
+    networks:
+      - recipes-network
 
   recipes_client:
     container_name: recipes-client
@@ -37,6 +45,9 @@ services:
     restart: on-failure
     ports:
       - "3000:3000"
+
+networks:
+  recipes-network:
 
 
 
