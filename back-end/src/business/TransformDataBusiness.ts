@@ -1,15 +1,12 @@
 import fs from 'fs';
-import {PersonDto} from "../models/dto/PersonDto";
 import {TransformedPersonDto} from "../models/dto/TransformedPersonDto";
-import {InternalServerError} from "http-errors";
-import {transformDataRouter} from "../controllers/TransformDataController";
 import {promisify} from "util";
 
 export default class TransformDataBusiness {
     async getTransformedData()  {
         const readFileAsync = promisify(fs.readFile)
 
-        const data = await readFileAsync('assets/test.json', {encoding: 'utf8'});
+        const data = await readFileAsync('assets/data.json', {encoding: 'utf8'});
 
         const json = JSON.parse(data);
 
