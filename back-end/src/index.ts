@@ -9,9 +9,11 @@ app.use('/api', router);
 
 sequelize.authenticate()
     .then(() => console.log('Connection has been established successfully.'))
-    .catch((error) => console.error('Unable to connect to the database:', error));
-
+    .catch((error) => {
+        console.error('Unable to connect to the database:', error)
+        sequelize.close();
+    });
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`)
-})
+});
