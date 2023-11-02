@@ -8,9 +8,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-
-FROM base AS final
-WORKDIR /app
-COPY --from=build /app/build ./build
-RUN npm install -g serve
-ENTRYPOINT ["serve", "-s", "build", "-l", "3000"]
+#
+#FROM base AS final
+#WORKDIR /app
+#COPY --from=build /app/build ./build
+#ENTRYPOINT ["npm", "start"]
