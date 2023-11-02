@@ -20,7 +20,7 @@ To start your application, follow these steps:
 1. Clone the repository:
    ```sh
    git clone https://github.com/felixngo/RecipesAPI.git
-   cd your-app
+   cd RecipesAPI
    ```
 
 2. Run Docker Compose to start the application:
