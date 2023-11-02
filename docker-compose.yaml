@@ -37,14 +37,14 @@ services:
     networks:
       - recipes-network
 
-  recipes_client:
-    container_name: recipes-client
-    build:
-      context: ./front-end
-      dockerfile: Dockerfile
-    restart: on-failure
-    ports:
-      - "3000:3000"
+#  recipes_client:
+#    container_name: recipes-client
+#    build:
+#      context: ./front-end
+#      dockerfile: Dockerfile
+#    restart: on-failure
+#    ports:
+#      - "3000:3000"
 
 networks:
   recipes-network:
