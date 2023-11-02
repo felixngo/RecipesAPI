@@ -45,11 +45,10 @@ function App() {
      * Opens the update form for a specific recipe.
      * @param {Object} recipe - The recipe to edit.
      */
-    const openUpdate = (recipe) => {
-        getRecipeById(recipe.id).then(result => {
-            setSelectedValue(result);
-            setCreationOpen(true);
-        });
+    const openUpdate = async (recipe) => {
+        const result = await getRecipeById(recipe.id)
+        setSelectedValue(result)
+        setUpdateOpen(true)
     };
 
     /**
@@ -116,9 +115,9 @@ function App() {
                                 <td>{r.id}</td>
                                 <td>{r.name}</td>
                                 <td>{r.description}</td>
-                                <td>{r.ingredients}</td>
-                                <td>{r.instruction}</td>
-                                <td><button onClick={() => openUpdate(r)}>Edit</button></td>
+                                <td>{r.ingredients.join(';')}</td>
+                                <td>{r.instructions}</td>
+                                <td><button onClick={async() => await openUpdate(r)}>Edit</button></td>
                                 <td><button onClick={() => deleteSelectedRecipe(r)}>Delete</button></td>
                             </tr>
                         );

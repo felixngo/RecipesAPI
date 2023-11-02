@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080/v1/';
+const BASE_URL = 'http://localhost:80/api/';
 
 // Fonction pour obtenir toutes les recettes
 export async function getRecipes() {
     try {
-        return await axios.get(BASE_URL + 'recipes');
+        const response = await axios.get(BASE_URL + 'recipes');
+        return response.data;
     } catch (error) {
         console.error(error);
         return [];
@@ -15,7 +16,8 @@ export async function getRecipes() {
 // Fonction pour obtenir une recette par son ID
 export async function getRecipeById(id) {
     try {
-        return await axios.get(BASE_URL + `recipes/${id}`);
+       const response = await axios.get(BASE_URL + `recipes/${id}`);
+       return response.data;
     } catch (error) {
         console.error(error);
     }

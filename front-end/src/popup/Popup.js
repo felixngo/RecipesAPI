@@ -19,11 +19,13 @@ function Popup({ onValid, onCancel, initialValues }) {
     // Use useEffect to update the fields when initialValues change
     useEffect(() => {
         if (initialValues) {
-            setNom(initialValues.nom || '');
+            console.log({initialValues})
+            setNom(initialValues.name || '');
             setDescription(initialValues.description || '');
-            setIngredients(initialValues.ingredients || '');
-            setInstruction(initialValues.instruction || '');
+            setIngredients(initialValues.ingredients.join(';') || '');
+            setInstruction(initialValues.instructions || '');
         }
+        console.log(initialValues)
     }, [initialValues]);
 
     /**
@@ -34,10 +36,10 @@ function Popup({ onValid, onCancel, initialValues }) {
         e.preventDefault();
 
         const formData = {
-            nom,
-            description,
-            ingredients,
-            instruction,
+            name: nom,
+            description: description,
+            ingredients: ingredients.split(';'),
+            instructions: instruction,
         };
 
         onValid(formData);
