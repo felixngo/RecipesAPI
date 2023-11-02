@@ -22,8 +22,6 @@ services:
       context: ./back-end
       dockerfile: Dockerfile
     restart: on-failure
-    volumes:
-      - ./back-end/:/app/
     environment:
       - PORT=80
       - RECIPES_DATABASE_USER=postgres
